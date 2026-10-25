@@ -151,7 +151,39 @@ dataset and would replace the current 132-image gallery.
 After uploading, confirm `https://<your-domain>/gallery-data.js` returns
 JavaScript (`Content-Type: text/javascript`), not the HTML shell.
 
-## 7. Known data limitation (unchanged)
+## 7. Broken Google Fonts URL (fixed)
+
+The deployed `index.html` requested the two webfonts with an invalid CSS2 axis
+query:
+
+```
+family=Noto+Serif+Display:wdth,wght@62.5..100,400;700
+```
+
+The second tuple (`700`) only supplies one value for two axes, so Google
+answers **HTTP 400** with an HTML error page. Because `X-Content-Type-Options:
+nosniff` is set, the browser refuses that HTML as a stylesheet:
+
+```
+The resource ... was blocked due to MIME type (“text/html”) mismatch
+```
+
+Both families were therefore falling back to system fonts:
+`--font-record` → Arial Narrow, `--font-tall` → Georgia. The query is now
+valid, and the intended faces load:
+
+```
+family=Archivo+Narrow:wght@400;700
+&family=Noto+Serif+Display:wdth,wght@62.5..100,400;62.5..100,700
+&display=swap
+```
+
+Verified: 200, `text/css`, 8,268 bytes. Expect the typography to look slightly
+narrower/more refined than the current live site — that is the designer's
+intended face finally rendering, not a layout change. If you prefer the system
+fallback look, delete the `<link>` in `index.html`; nothing else depends on it.
+
+## 8. Known data limitation (unchanged)
 
 Each of the 132 projects currently has exactly **one** media file. The detail
 page template renders additional plates only when `item.media[1]` exists, so
