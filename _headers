@@ -13,3 +13,12 @@
 
 /media/thumbs/*
   Cache-Control: public, max-age=2592000
+
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+
+/media/brand/*
+  Cache-Control: public, max-age=86400
