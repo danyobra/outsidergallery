@@ -17,6 +17,7 @@ Check after deploying: `/gallery-data.js` must return `Content-Type: text/javasc
 
 ## Layout
 
-- `index.html`, `gallery-data.js`, `assets/` (JS + CSS bundle), `media/` (photos, `thumbs/`, `about-portrait.jpg`, `brand/` = header logo, favicons, social-share image)
+- `index.html`, `gallery-data.js`, `assets/` (JS + CSS bundle), `media/` (photos, `thumbs/`, `about-portrait.png`, `brand/` = header logo, favicons, social-share image)
+- `theme.js` + `theme.css` — local-time day/night theme for the About and project/content pages
 - `favicon.ico`, `apple-touch-icon.png` live in the project root
 - `_headers` cache + MIME rules, `404.html` real 404s for missing files

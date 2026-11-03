@@ -1,0 +1,120 @@
+/* ================================================================
+   Time-based day/night theme — colours only.
+
+   Loaded after the main stylesheet so these rules override the old
+   fixed About (dark) and project/content (grey) colours without
+   touching typography, cursors, layout, spacing or animations.
+
+   night : use the existing About black + paper palette
+   day   : use the existing project-page grey + ink palette
+================================================================ */
+
+html[data-time-theme="night"] .view-shell {
+  --tt-bg: #050505;
+  --tt-fg: #f0efe9;
+  --tt-muted: #aaa9a2;
+  --tt-soft: #d2d1ca;
+  --tt-rule: rgba(240, 239, 233, 0.19);
+}
+
+html[data-time-theme="day"] .view-shell {
+  --tt-bg: #c9c8c3;
+  --tt-fg: #0a0a09;
+  --tt-muted: #4d4d49;
+  --tt-soft: #2a2a27;
+  --tt-rule: rgba(10, 10, 9, 0.19);
+}
+
+/* --- page shells + navigation ---------------------------------- */
+html[data-time-theme] .view-shell,
+html[data-time-theme] .view-page {
+  background: var(--tt-bg);
+  color: var(--tt-fg);
+}
+
+html[data-time-theme] .view-nav {
+  background: var(--tt-bg);
+  color: var(--tt-fg);
+  border-bottom-color: var(--tt-rule);
+}
+html[data-time-theme] .view-nav a,
+html[data-time-theme] .view-back {
+  color: var(--tt-fg);
+}
+
+/* --- project / content pages ----------------------------------- */
+html[data-time-theme] .project-hero__meta,
+html[data-time-theme] .project-disclaimer,
+html[data-time-theme] .project-hero__plate figcaption,
+html[data-time-theme] .ledger-row dt,
+html[data-time-theme] .ledger__row dt,
+html[data-time-theme] .ledger__row > span {
+  color: var(--tt-muted);
+}
+
+html[data-time-theme] .ledger-row:first-child,
+html[data-time-theme] .ledger-row:last-child,
+html[data-time-theme] .ledger__row:first-child,
+html[data-time-theme] .ledger__row:last-child {
+  border-color: var(--tt-rule);
+}
+
+html[data-time-theme] .project-gallery,
+html[data-time-theme] .credits-section {
+  background: var(--tt-bg);
+}
+
+html[data-time-theme] .next-project {
+  border-top-color: var(--tt-rule);
+  color: var(--tt-fg);
+}
+html[data-time-theme] .next-project:focus-visible {
+  outline-color: var(--tt-fg);
+}
+
+/* --- About page ------------------------------------------------ */
+html[data-time-theme] .about-page {
+  background: var(--tt-bg);
+  color: var(--tt-fg);
+}
+
+/* Layered portrait: the display type sits underneath, the transparent
+   cut-out sits on top and remains crisp on both themes. */
+.about-hero h1 {
+  z-index: 1;
+}
+.about-hero figure {
+  z-index: 2;
+  pointer-events: none;
+}
+.about-hero figure img {
+  height: auto;
+  mix-blend-mode: normal;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+}
+html[data-time-theme] .about-hero > p {
+  color: var(--tt-muted);
+}
+html[data-time-theme] .about-copy {
+  border-top-color: var(--tt-rule);
+}
+html[data-time-theme] .about-copy__body p {
+  color: var(--tt-soft);
+}
+html[data-time-theme] .about-copy__body .about-copy__lead {
+  color: var(--tt-fg);
+}
+html[data-time-theme] .about-facts .ledger__row {
+  border-color: var(--tt-rule);
+  color: var(--tt-fg);
+}
+html[data-time-theme] .about-facts .ledger__row > span {
+  color: var(--tt-muted);
+}
+
+/* --- shared footer / contact strip ----------------------------- */
+html[data-time-theme] .site-footer {
+  background: var(--tt-bg);
+  color: var(--tt-fg);
+}
